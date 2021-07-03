@@ -1,0 +1,16 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+pipreq/__init__.py
+pipreq/cli.py
+pipreq/command.py
+pipreq.egg-info/PKG-INFO
+pipreq.egg-info/SOURCES.txt
+pipreq.egg-info/dependency_links.txt
+pipreq.egg-info/entry_points.txt
+pipreq.egg-info/pbr.json
+pipreq.egg-info/top_level.txt
+requirements/package.txt
+test/test_cli.py
+test/test_command.py

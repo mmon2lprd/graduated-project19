@@ -1,0 +1,3 @@
+[console_scripts]
+pipreq = pipreq.cli:main
+
