@@ -26,8 +26,9 @@ def createdb():
 # Connect DB
 def condb():
     mydb = psycopg2.connect(
-        host="localhost",
-        database="vetdb",
-        user="postgres",
-        password="root")
+        host="ec2-3-89-0-52.compute-1.amazonaws.com",
+        database="dedf80glcmk22j",
+        user="fakonaqptkmunv",
+        password="f4a3d92b09c7d1fe30b89ac80da037ee4015f05dc63212c4372847d37114ccb5",
+        port="5432")
     return mydb
