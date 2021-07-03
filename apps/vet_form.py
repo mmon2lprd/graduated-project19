@@ -5,7 +5,7 @@ from io import BytesIO
 from PIL import Image
 from DB_CONNECT import condb
 
-mydb = condb(1)
+mydb = condb()
 c = mydb.cursor()
 
 
