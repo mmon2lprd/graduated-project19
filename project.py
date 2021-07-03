@@ -20,4 +20,4 @@ app.add_app("ลงทะเบียนเกษตรกร", farmer_form.app)
 app.add_app("ลงทะเบียนพื้นที่เพาะปลูก",farm_form.app)
 
 app.run()
-condb(0)
+condb()

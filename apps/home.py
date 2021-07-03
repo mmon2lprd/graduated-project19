@@ -3,7 +3,7 @@ from io import BytesIO
 from PIL import Image
 from DB_CONNECT import condb
 import numpy as np
-mydb = condb(1)
+mydb = condb()
 c = mydb.cursor()
 def select_pil(params, outfile=None):
     sql_cmd = """

@@ -24,15 +24,10 @@ def createdb():
     return False
 
 # Connect DB
-def condb(ex):
+def condb():
     mydb = psycopg2.connect(
-        host="ec2-3-89-0-52.compute-1.amazonaws.com",
-        database="dedf80glcmk22j",
-        user="fakonaqptkmunv",
-        password="f4a3d92b09c7d1fe30b89ac80da037ee4015f05dc63212c4372847d37114ccb5")
-    if(mydb):
-        print('Connect database Successful!')
-    if (ex==0):
-        mydb.close()
-        print('Disconnect database Successful!')
+        host="localhost",
+        database="vetdb",
+        user="postgres",
+        password="root")
     return mydb

@@ -5,7 +5,7 @@ from PIL import Image
 import pandas as pd
 import base64
 from DB_CONNECT import condb
-mydb = condb(1)
+mydb = condb()
 c = mydb.cursor()
 timenow = datetime.datetime.now()
 Date = timenow.strftime('%Y-%m-%d')
