@@ -1,12 +1,12 @@
 #Create Database
-from DB_CONNECT import *
-from ddl_db import create_table
+from DB_CONNECT import condb
+#from ddl_db import create_table
 
-cdb = True
-ctb = True
-while cdb&ctb==True:
-    cdb = createdb()
-    ctb = create_table()
+#cdb = True
+#ctb = True
+#while cdb&ctb==True:
+#    cdb = createdb()
+#    ctb = create_table()
 
 
 #Multiapp
