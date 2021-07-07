@@ -43,7 +43,6 @@ def app():
     clean_db = pd.DataFrame(result, columns=["รหัสพืช", "รายชื่อพืช", "คำบรรยายพืช", "เวลาที่ลงทะเบียน"])
     st.dataframe(clean_db, height=200)
     # Input Form
-
     with st.form(key="vetregis"):
         vet_name = st.text_input("ชื่อ :", max_chars=50)
         vet_des = st.text_area("คำบรรยาย :", height=250)
