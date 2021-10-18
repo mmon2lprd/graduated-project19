@@ -43,22 +43,21 @@ def app():
     clean_db = pd.DataFrame(result, columns=["รหัสพืช", "รายชื่อพืช", "คำบรรยายพืช", "เวลาที่ลงทะเบียน"])
     st.dataframe(clean_db, height=200)
     # Input Form
-    with st.form(key="vetregis"):
-        vet_name = st.text_input("ชื่อ :", max_chars=50)
-        vet_des = st.text_area("คำบรรยาย :", height=250)
-        vet_date = timenow.strftime('%Y-%m-%d %H:%M:%S')
-        image_file = st.file_uploader("แนบไฟล์รูป :", type=['png', 'jpg', 'jpeg'])
-        col1, col2, col3, col4, col5 = st.beta_columns(5)
-        with col3:
-            submitted = st.form_submit_button(label='เพิ่มข้อมูล')
-        if image_file is not None:
-            file_details = {"FileName": image_file.name, "FileType": image_file.type}
-            st.write(file_details)
-            vet_img = load_image(image_file)
-            st.image(vet_img, use_column_width='auto', output_format='PNG')
-        else:
-            vet_img = None
-        if submitted:
-            add_data(vet_name, vet_des, vet_date, vet_img)
-            rowc = c.rowcount
-            st.success("การลงทะเบียน{} สำเร็จ! จำนวน {} แถว".format(vet_name, rowc))
+    vet_name = st.text_input("ชื่อ :", max_chars=50)
+    vet_des = st.text_area("คำบรรยาย :", height=250)
+    vet_date = timenow.strftime('%Y-%m-%d %H:%M:%S')
+    image_file = st.file_uploader("แนบไฟล์รูป :", type=['png', 'jpg', 'jpeg'])
+    col1, col2, col3, col4, col5 = st.beta_columns(5)
+    with col3:
+        submitted = st.button(label='เพิ่มข้อมูล')
+    if image_file is not None:
+        file_details = {"FileName": image_file.name, "FileType": image_file.type}
+        st.write(file_details)
+        vet_img = load_image(image_file)
+        st.image(vet_img, use_column_width='auto', output_format='PNG')
+    else:
+        vet_img = None
+    if submitted:
+        add_data(vet_name, vet_des, vet_date, vet_img)
+        rowc = c.rowcount
+        st.success("การลงทะเบียน{} สำเร็จ! จำนวน {} แถว".format(vet_name, rowc))
