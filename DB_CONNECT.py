@@ -26,6 +26,7 @@ def createdb():
 def condb():
     mydb = psycopg2.connect(
         #host="ec2-3-89-0-52.compute-1.amazonaws.com",
+        host="localhost"
         #database="dedf80glcmk22j",
         database="vetdb",
         #user="fakonaqptkmunv",
