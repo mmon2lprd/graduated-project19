@@ -1,16 +1,5 @@
-#Create Database
 from DB_CONNECT import condb
-#from ddl_db import create_table
-
-#cdb = True
-#ctb = True
-#while cdb&ctb==True:
-#    cdb = createdb()
-#    ctb = create_table()
-
-
-#Multiapp
-from multiapp import MultiApp
+from MultiApp import MultiApp
 from apps import home,vet_form,farmer_form,farm_form
 
 app = MultiApp()
