@@ -186,7 +186,7 @@ def convert_csv(data):
 def app():
     st.title("ลงทะเบียนเกษตรกร")
     # DISPLAY
-    with st.beta_expander("ดูรายชื่อสมาชิกทั้งหมด"):
+    with st.expander("ดูรายชื่อสมาชิกทั้งหมด"):
         #st.subheader("รายชื่อข้อมูลสมาชิก")
         farmerlist = view_all_farmerlists()
         checked_province = st.checkbox('ระบุจังหวัด')
@@ -217,10 +217,10 @@ def app():
         convert_csv(farmerdata)
 
     # INPUT FORM
-    with st.beta_expander("เพิ่มข้อมูลสมาชิก"):
+    with st.expander("เพิ่มข้อมูลสมาชิก"):
         #st.subheader("เพิ่มข้อมูลสมาชิก")
         st.write('ณ วันที่ {} เวลา {}'.format(Date, Time))
-        prenamec, firstnamec, lastnamec = st.beta_columns([1, 2, 2])
+        prenamec, firstnamec, lastnamec = st.columns([1, 2, 2])
         with prenamec:
             options = ["นาย","นาง","นางสาว"]
             prename = st.selectbox("คำนำหน้า :",(options),key='prename')
@@ -228,13 +228,13 @@ def app():
             firstname = st.text_input("ชื่อ :",max_chars=150,key='firstname')
         with lastnamec:
             lastname = st.text_input("นามสกุล :",max_chars=150,key='lastname')
-        farmeridThc, idThc = st.beta_columns([1,2])
+        farmeridThc, idThc = st.columns([1,2])
         with farmeridThc:
             farmeridTh = st.text_input("รหัสเกษตรกร :",max_chars=8,key='farmeridth')
         with idThc:
             idTh = st.text_input("รหัสประจำตัวประชาชน :",max_chars=13,key='idth')
         tel = st.text_input("เบอร์โทรศัพท์ :", max_chars=10,key='tel')
-        addrNoc, vilNoc, vilNamec = st.beta_columns([1,1,3])
+        addrNoc, vilNoc, vilNamec = st.columns([1,1,3])
         with addrNoc:
             addrNo = st.text_input("บ้านเลขที่ :",key='addrno')
         with vilNoc:
@@ -255,7 +255,7 @@ def app():
         addrsubdistrictID = compare_sdt(subdistrictname,addrdistrictID,provinceID)
         image_file = st.file_uploader("แนบไฟล์รูป :", type=['png', 'jpg', 'jpeg'],key='img_famer')
         farmer_date = timenow.strftime('%Y-%m-%d %H:%M:%S')
-        col1, col2, col3, col4, col5 = st.beta_columns(5)
+        col1, col2, col3, col4, col5 = st.columns(5)
         with col3:
             submitted = st.button(label='เพิ่มข้อมูล')
         if image_file is not None:
@@ -270,7 +270,7 @@ def app():
             st.success("การลงทะเบียนสมาชิก: {} {} {}สำเร็จ!".format(prename, firstname, lastname))
 
     # EDIT FORM
-    with st.beta_expander("แก้ไชข้อมูลสมาชิก"):
+    with st.expander("แก้ไชข้อมูลสมาชิก"):
         mb = view_edit_farmerlists()
         memberlist = pd.DataFrame(mb, columns=["ชื่อสมาชิก"])
         person_selected = st.selectbox("โปรดเลือกสมาชิก :",(memberlist))
@@ -297,11 +297,11 @@ def app():
             tel = thisfarmer[13]
             farmerdate = thisfarmer[14]
             # LAYOUT
-            a,img,b = st.beta_columns([1,1,1])
+            a,img,b = st.columns([1,1,1])
             with img:
                 st.image(select_pil([farmerid]),person_selected)
             st.write("ลงทะเบียนเมื่อวันที : {} ".format(farmerdate))
-            prenamec, firstnamec, lastnamec = st.beta_columns([1, 2, 2])
+            prenamec, firstnamec, lastnamec = st.columns([1, 2, 2])
             with prenamec:
                 mr = ["นาย"]
                 miss = ["นางสาว"]
@@ -318,13 +318,13 @@ def app():
                 new_firstname = st.text_input("ชื่อ :",firstname, max_chars=150)
             with lastnamec:
                 new_lastname = st.text_input("นามสกุล :",lastname, max_chars=150)
-            farmeridThc, idThc = st.beta_columns([1, 2])
+            farmeridThc, idThc = st.columns([1, 2])
             with farmeridThc:
                 new_farmeridTh = st.text_input("รหัสเกษตรกร :",farmeridTh, max_chars=8)
             with idThc:
                 new_idTh = st.text_input("รหัสประจำตัวประชาชน :",idTh, max_chars=13)
             new_tel = st.text_input("เบอร์โทรศัพท์ :",tel, max_chars=10)
-            addrNoc, vilNoc, vilNamec = st.beta_columns([1, 1, 3])
+            addrNoc, vilNoc, vilNamec = st.columns([1, 1, 3])
             with addrNoc:
                 new_addrNo = st.text_input("บ้านเลขที่ :",addrNo)
             with vilNoc:
@@ -344,7 +344,7 @@ def app():
             new_subdistrictname = st.selectbox("ตำบล :", subdistrictlist)
             new_addrsubdistrictID = compare_sdt(new_subdistrictname, addrdistrictID, provinceID)
             image_file = st.file_uploader("แนบไฟล์รูป :", type=['png', 'jpg', 'jpeg'])
-            col1, col2, col3, col4 = st.beta_columns([1,1,1,1])
+            col1, col2, col3, col4 = st.columns([1,1,1,1])
             with col2:
                 editsubmitted = st.button(label='แก้ไขข้อมูล')
             with col3:

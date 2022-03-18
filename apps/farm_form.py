@@ -194,7 +194,7 @@ def convert_csv(data):
 def app():
     st.title("ลงทะเบียนพื้นที่เพาะปลูก")
     # DISPLAY
-    with st.beta_expander("ดูที่อยู่แปลงทั้งหมด"):
+    with st.expander("ดูที่อยู่แปลงทั้งหมด"):
         #st.subheader("รายชื่อข้อมูลสมาชิก")
         farmlist = view_all_farmlists()
         checked_province = st.checkbox('ระบุจังหวัด')
@@ -225,7 +225,7 @@ def app():
         st.dataframe(farmdata, height=200)
         convert_csv(farmdata)
     # INPUT FORM
-    with st.beta_expander("เพิ่มข้อมูลที่อยู่แปลง"):
+    with st.expander("เพิ่มข้อมูลที่อยู่แปลง"):
         mb = view_farmerlists()
         memberlist = pd.DataFrame(mb, columns=["ชื่อสมาชิก"])
         person_selected = st.selectbox("โปรดเลือกสมาชิก :", (memberlist))
@@ -237,7 +237,7 @@ def app():
         farmerid = compare_farmerid(person_selected)
         st.write('ณ วันที่ {} เวลา {}'.format(Date, Time))
         #LAYOUT
-        vilNoc, vilNamec = st.beta_columns([1,3])
+        vilNoc, vilNamec = st.columns([1,3])
         with vilNoc:
             vilNo = st.text_input("หมู่ที่ :", max_chars=2,key='vilno')
         with vilNamec:
@@ -255,14 +255,14 @@ def app():
         subdistrictname = st.selectbox("ตำบล :", subdistrictlist,key='subdistrictname')
         farmsubdistrictID = compare_sdt(subdistrictname,addrdistrictID,provinceID)
         st.write("ขนาดพื้นที่")
-        quantityfarmc, quantitybuildingc = st.beta_columns(2)
+        quantityfarmc, quantitybuildingc = st.columns(2)
         with quantityfarmc:
             quantityfarm = st.number_input("จำนวนไร่ :",min_value=0,step=1,key='quantityfarm')
         with quantitybuildingc:
             quantitybuilding = st.number_input("จำนวนโรงเรือน :",min_value=0, step=1,key='quantitybuilding')
         landprivileges = st.text_input("เอกสารสิทธิการใช้ประโยชน์ที่ดิน :",key='landprivileges')
         st.write("พิกัดแปลง")
-        geoxc, geoyc, geozc = st.beta_columns(3)
+        geoxc, geoyc, geozc = st.columns(3)
         with geoxc:
             geox = st.number_input("พิกัดแกน X :",min_value=0,step=1,key='geox')
         with geoyc:
@@ -285,7 +285,7 @@ def app():
             gapanalyze = True
         else:
             gapanalyze = False
-        col1, col2, col3, col4, col5 = st.beta_columns(5)
+        col1, col2, col3, col4, col5 = st.columns(5)
         with col3:
             submitted = st.button(label='เพิ่มข้อมูล')
         if submitted:
@@ -293,7 +293,7 @@ def app():
                      geoy, geoz, soilanalyze, wateranalyze, gapanalyze)
             st.success("การลงทะเบียนที่อยู่แปลง: {} สำเร็จ!".format(person_selected))
 
-    with st.beta_expander("แก้ไขข้อมูลที่อยู่แปลง"):
+    with st.expander("แก้ไขข้อมูลที่อยู่แปลง"):
         fm = view_farmerlists()
         farmerchoice = pd.DataFrame(fm, columns=["ชื่อสมาชิก"])
         person_selected = st.selectbox("สมาชิก :", (farmerchoice))
@@ -326,7 +326,7 @@ def app():
                 farmerid = thisfarm[13]
                 # LAYOUT
                 st.subheader("แก้ไชข้อมูลสมาชิก : {} | รหัสแปลง : {}".format(person_selected,farm_selected))
-                vilNoc, vilNamec = st.beta_columns([1, 3])
+                vilNoc, vilNamec = st.columns([1, 3])
                 with vilNoc:
                     new_vilNo = st.text_input("หมู่ที่ :",farmvilno, max_chars=2,key='vilnoedit')
                 with vilNamec:
@@ -344,14 +344,14 @@ def app():
                 new_subdistrictname = st.selectbox("ตำบล :", subdistrictlist, key='subdistrictnameedit')
                 new_farmsubdistrictID = compare_sdt(new_subdistrictname, addrdistrictID, provinceID)
                 st.write("ขนาดพื้นที่")
-                quantityfarmc, quantitybuildingc = st.beta_columns(2)
+                quantityfarmc, quantitybuildingc = st.columns(2)
                 with quantityfarmc:
                     new_quantityfarm = st.number_input("จำนวนไร่ :",value=quantityfarm, min_value=0, step=1, key='quantityfarmedit')
                 with quantitybuildingc:
                     new_quantitybuilding = st.number_input("จำนวนโรงเรือน :",value=quantitybuilding, min_value=0, step=1, key='quantitybuildingedit')
                 new_landprivileges = st.text_input("เอกสารสิทธิการใช้ประโยชน์ที่ดิน :",landprivileges, key='landprivilegesedit')
                 st.write("พิกัดแปลง")
-                geoxc, geoyc, geozc = st.beta_columns(3)
+                geoxc, geoyc, geozc = st.columns(3)
                 with geoxc:
                     new_geox = st.number_input("พิกัดแกน X :",value=geox, min_value=0, step=1, key='geoxedit')
                 with geoyc:
@@ -386,7 +386,7 @@ def app():
                     new_gapanalyze = True
                 else:
                     new_gapanalyze = False
-                col1, col2, col3, col4 = st.beta_columns([1, 1, 1, 1])
+                col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
                 with col2:
                     editsubmitted = st.button(label='แก้ไขข้อมูล')
                 with col3:

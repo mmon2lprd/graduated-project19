@@ -47,7 +47,7 @@ def app():
     vet_des = st.text_area("คำบรรยาย :", height=250)
     vet_date = timenow.strftime('%Y-%m-%d %H:%M:%S')
     image_file = st.file_uploader("แนบไฟล์รูป :", type=['png', 'jpg', 'jpeg'])
-    col1, col2, col3, col4, col5 = st.beta_columns(5)
+    col1, col2, col3, col4, col5 = st.columns(5)
     with col3:
         submitted = st.button(label='เพิ่มข้อมูล')
     if image_file is not None:
