@@ -40,12 +40,11 @@ def app():
     st.subheader('ณ วันที่ {} เวลา {}'.format(Date, Time))
     # Display
     result = view_all_vetlists()
-    clean_db = pd.DataFrame(result, columns=["รหัสพืช", "รายชื่อพืช", "คำบรรยายพืช", "เวลาที่ลงทะเบียน"])
+    clean_db = pd.DataFrame(result, columns=["รหัสพืช", "รายชื่อพืช", "คำบรรยายพืช"])
     st.dataframe(clean_db, height=200)
     # Input Form
     vet_name = st.text_input("ชื่อ :", max_chars=50)
     vet_des = st.text_area("คำบรรยาย :", height=250)
-    vet_date = timenow.strftime('%Y-%m-%d %H:%M:%S')
     image_file = st.file_uploader("แนบไฟล์รูป :", type=['png', 'jpg', 'jpeg'])
     col1, col2, col3, col4, col5 = st.columns(5)
     with col3:

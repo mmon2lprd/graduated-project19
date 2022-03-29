@@ -19,45 +19,16 @@ def load_image(image_file):
     output = fp.getvalue()
     return output
 
-def view_province():
-    c.execute('SELECT provinceName FROM addrprovince;')
-    data = c.fetchall()
-    return data
-
-def compare_pv(provincename):
-    sql = "SELECT provinceid FROM addrprovince WHERE provinceName = %s;"
-    var = [provincename]
-    c.execute(sql,var)
-    data = c.fetchone()
-    return data
-
-def compare_dt(districtname,provinceID):
-    sql = "SELECT districtid FROM addrdistrict WHERE districtName = %s AND provinceid = %s;"
-    dt = districtname
-    pid = provinceID
-    c.execute(sql, (dt, pid))
-    data = c.fetchone()
-    return data
-
-def compare_sdt(subdistrictname,addrdistrictID,provinceID):
-    sql = "SELECT subdistrictid FROM addrsubdistrict sd NATURAL JOIN addrdistrict dt " \
-          "WHERE sd.subdistrictName = %s" \
-          "AND dt.districtid = %s" \
-          "AND dt.provinceid = %s;"
+def compare_sdt(subdistrictname):
+    sql = "SELECT subdistrict_id FROM address" \
+          "WHERE subdistrict_name = %s"
     sdt = subdistrictname
-    dt = addrdistrictID
-    p = provinceID
-    c.execute(sql, (sdt,dt,p))
+    c.execute(sql, sdt)
     data = c.fetchone()
     return data
 
 def view_subdistrict(districtid):
     c.execute("SELECT DISTINCT subdistrictName FROM addrsubdistrict sd INNER JOIN addrdistrict d ON sd.districtID = d.districtID WHERE sd.districtID = %s;" ,districtid)
-    data = c.fetchall()
-    return data
-
-def view_district(provinceID):
-    c.execute("SELECT DISTINCT districtName FROM addrdistrict d INNER JOIN addrprovince p ON d.provinceID = p.provinceID WHERE d.provinceID = %s;" ,provinceID)
     data = c.fetchall()
     return data
 
